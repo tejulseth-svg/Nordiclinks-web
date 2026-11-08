@@ -398,24 +398,24 @@ form.addEventListener("submit", async (e) => {
     statusEl.textContent = "Could not send. Check your connection and try again.";
   }
 });
-// Demo-klipp: legg filene i videos/ (tee.mp4, fairway.mp4, rough.mp4, deep.mp4, bunker.mp4, green.mp4)
-const CLIPS = {
-  tee:{title:"From the tee", text:"Pick the driver and line up the shot without touching the keyboard."},
-  fairway:{title:"From the fairway", text:"“Caddie, what club?” reads distance and slope from GSPro."},
-  rough:{title:"From the rough", text:"Light rough costs a little distance. The caddie adds it."},
-  deep:{title:"From deep rough", text:"No woods, never short. It clubs up for the lost carry."},
-  bunker:{title:"From the bunker", text:"Greenside or fairway bunker, it picks the right wedge."},
-  green:{title:"On the green", text:"Putter, green grid and pin, all by voice."}
+// Én demovideo (videos/demo.mp4). Knappene hopper til kapitlene; sett start-sekund når videoen er klippet.
+const CHAPTERS = {
+  tee:{t:0, title:"From the tee", text:"Pick the driver and line up the shot without touching the keyboard."},
+  fairway:{t:0, title:"From the fairway", text:"“Caddie, what club?” reads distance and slope from GSPro."},
+  rough:{t:0, title:"From the rough", text:"Light rough costs a little distance. The caddie adds it."},
+  deep:{t:0, title:"From deep rough", text:"No woods, never short. It clubs up for the lost carry."},
+  bunker:{t:0, title:"From the bunker", text:"Greenside or fairway bunker, it picks the right wedge."},
+  green:{t:0, title:"On the green", text:"Putter, green grid and pin, all by voice."}
 };
 const vid=document.getElementById("clipVideo"), ph=document.getElementById("clipPh");
+vid.onloadeddata=()=>{vid.hidden=false; ph.hidden=true;};
+vid.onerror=()=>{vid.hidden=true; ph.hidden=false;};
+vid.src="videos/demo.mp4";
 function showClip(key){
   document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-selected", b.dataset.clip===key));
-  document.getElementById("clipTitle").textContent=CLIPS[key].title;
-  document.getElementById("clipText").textContent=CLIPS[key].text+" Clip coming soon.";
-  vid.hidden=true; ph.hidden=false;
-  vid.onloadeddata=()=>{vid.hidden=false; ph.hidden=true;};
-  vid.onerror=()=>{vid.hidden=true; ph.hidden=false;};
-  vid.src="videos/"+key+".mp4";
+  document.getElementById("clipTitle").textContent=CHAPTERS[key].title;
+  document.getElementById("clipText").textContent=CHAPTERS[key].text+" Video coming soon.";
+  if(!vid.hidden){ vid.currentTime=CHAPTERS[key].t; vid.play().catch(()=>{}); }
 }
 document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>showClip(b.dataset.clip)));
 showClip("tee");
