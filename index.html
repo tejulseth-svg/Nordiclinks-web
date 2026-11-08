@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Nordic Links</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,500;125,700;125,800&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Nordic Links: slate ground, mint accent, expanded Archivo display over Manrope, contour lines */
+:root{
+  --bg:#16232A; --panel:#1C2C34; --panel2:#213540; --line:#2F4651; --text:#EDEAE2; --muted:#B3C2C3; --soft:#9DB0B3;
+  --mint:#86C5B5; --mint-hi:#A9DACD; --ink:#10191E; --ok:#9BE3C9;
+  --display:Archivo,'Arial Black','Segoe UI',sans-serif;
+  --body:Manrope,'Segoe UI',system-ui,-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',Consolas,'Courier New',monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);font-size:17px;line-height:1.6;overflow-x:hidden}
+a{color:var(--mint)}a:hover{color:var(--mint-hi)}
+:focus-visible{outline:2px solid var(--mint);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-stretch:125%;font-weight:800;line-height:1.02;letter-spacing:-.02em;text-wrap:balance;margin:0}
+h2{font-size:clamp(28px,3.8vw,44px)}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--mint)}
+.lead{color:var(--muted);font-size:clamp(17px,1.6vw,20px);max-width:58ch}
+section{padding-block:clamp(56px,8vw,96px);border-top:1px solid var(--line);position:relative}
+.sec-head{display:flex;flex-direction:column;gap:14px;margin-bottom:40px}
+
+/* contour lines behind the hero */
+.contours{position:absolute;left:0;right:0;top:0;height:640px;pointer-events:none;opacity:.22;z-index:0}
+.contours svg{width:100%;height:100%}
+
+/* header */
+header{position:sticky;top:0;z-index:20;background:rgba(22,35,42,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);font-family:var(--display);font-stretch:125%;font-weight:800;font-size:19px;letter-spacing:.08em;text-transform:uppercase}
+.brand:hover{color:var(--text)}
+.brand .dot{width:16px;height:16px;border-radius:8px;background:var(--mint);flex:none}
+nav{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-size:15px}
+nav a:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border-radius:24px;border:1px solid var(--mint);background:var(--mint);color:var(--ink);font:700 16px var(--body);text-decoration:none;cursor:pointer}
+.btn:hover{background:var(--mint-hi);border-color:var(--mint-hi);color:var(--ink)}
+.btn.ghost{background:transparent;color:var(--text);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--mint);color:var(--text)}
+.btn.small{min-height:40px;padding:0 18px;font-size:14px}
+@media (max-width:620px){nav a:not(.btn){display:none}}
+
+/* hero */
+.hero-wrap{position:relative}
+.hero{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(32px,5vw,64px);align-items:center;padding-block:clamp(48px,7vw,88px)}
+@media (max-width:880px){.hero{grid-template-columns:minmax(0,1fr)}}
+.hero-copy{display:flex;flex-direction:column;gap:26px;min-width:0}
+.hero h1{font-size:clamp(38px,5.6vw,72px)}
+.hero h1 span{color:var(--mint)}
+.ctas{display:flex;gap:14px;flex-wrap:wrap}
+.chips{display:flex;gap:10px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:34px;padding:4px 14px;border:1px solid var(--line);border-radius:17px;font-size:14px;color:var(--muted)}
+.chip i{width:8px;height:8px;border-radius:4px;background:var(--mint);flex:none}
+
+.talk{background:var(--panel);border:1px solid var(--line);border-radius:28px;padding:26px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.talk-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:6px}
+.listening{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--ok)}
+.wave{display:flex;align-items:center;gap:4px;height:22px}
+.wave b{width:4px;border-radius:2px;background:var(--mint);height:30%;animation:wave 1.1s ease-in-out infinite}
+.wave b:nth-child(2){animation-delay:.15s}.wave b:nth-child(3){animation-delay:.3s}.wave b:nth-child(4){animation-delay:.45s}.wave b:nth-child(5){animation-delay:.6s}
+@keyframes wave{0%,100%{height:25%}50%{height:100%}}
+.say{align-self:flex-end;max-width:92%;padding:12px 18px;border-radius:20px 20px 6px 20px;background:var(--mint);color:var(--ink);font-weight:700;font-size:17px}
+.done{align-self:flex-start;display:flex;align-items:flex-start;gap:8px;max-width:92%;padding:9px 15px;border-radius:20px 20px 20px 6px;border:1px solid var(--mint);color:var(--ok);font-size:15px}
+.done svg{flex:none;margin-top:4px}
+.done em{font-style:normal;color:var(--text)}
+
+/* demo video */
+.video{position:relative;aspect-ratio:16/9;max-width:100%;border:1px solid var(--line);border-radius:24px;background:radial-gradient(circle at 70% 30%,#24414A 0,var(--panel) 60%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:24px}
+.play{width:84px;height:84px;border-radius:42px;border:1px solid var(--mint);display:flex;align-items:center;justify-content:center}
+.video p{color:var(--muted)}
+
+/* smart caddie */
+.smart{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,48px);align-items:start}
+@media (max-width:880px){.smart{grid-template-columns:minmax(0,1fr)}}
+.calc{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:0;min-width:0}
+.calc .r{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.calc .r:last-child{border-bottom:0}
+.calc .r span{color:var(--muted)}
+.calc .r b{font-weight:700}
+.calc .r.total b{font-family:var(--display);font-stretch:125%;font-size:26px;color:var(--mint)}
+.calc .r.total span{color:var(--text);font-weight:600}
+.lies{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:24px}
+@media (max-width:520px){.lies{grid-template-columns:minmax(0,1fr)}}
+.lie{border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;justify-content:space-between;gap:12px}
+.lie b{font-family:var(--mono);color:var(--mint);font-weight:500}
+
+/* commands */
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+@media (max-width:980px){.grid4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.grid4{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card .eyebrow{font-size:11px}
+.cmd{font-size:18px;font-weight:600}
+.card small{color:var(--muted);font-size:14px;line-height:1.5}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;list-style:none;margin:0;padding:0}
+@media (max-width:820px){.steps{grid-template-columns:minmax(0,1fr)}}
+.steps li{display:flex;flex-direction:column;gap:10px;padding:24px;border:1px solid var(--line);border-radius:20px}
+.steps .n{font-family:var(--display);font-stretch:125%;font-weight:800;font-size:40px;color:var(--mint);line-height:1}
+.steps h3{font-size:20px}
+.steps p{color:var(--muted)}
+
+/* specs */
+.specs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(32px,5vw,64px);align-items:start}
+@media (max-width:880px){.specs{grid-template-columns:minmax(0,1fr)}}
+.big{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap}
+.big strong{font-family:var(--display);font-stretch:125%;font-weight:800;font-size:clamp(72px,10vw,128px);line-height:.85;color:var(--mint);font-variant-numeric:tabular-nums}
+.big span{padding-bottom:8px;color:var(--muted)}
+.big span b{display:block;font-family:var(--display);font-stretch:125%;font-size:24px;color:var(--text)}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:520px){.facts{grid-template-columns:minmax(0,1fr)}}
+.facts h3{font-family:var(--body);font-stretch:100%;font-weight:700;font-size:18px;letter-spacing:0}
+.req{margin-top:28px;padding:20px 24px;border:1px dashed var(--line);border-radius:16px;color:var(--muted);font-size:15px}
+.req strong{color:var(--text)}
+
+/* beta */
+.beta{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,5vw,64px);align-items:start}
+@media (max-width:880px){.beta{grid-template-columns:minmax(0,1fr)}}
+.spots{display:flex;gap:10px;margin-top:22px}
+.spot{width:52px;height:52px;border-radius:26px;border:1px solid var(--mint);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-stretch:125%;font-weight:800;color:var(--mint);font-size:20px}
+form{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:18px}
+.row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:520px){.row2{grid-template-columns:minmax(0,1fr)}}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+label{font-size:14px;font-weight:600}
+input,select,textarea{width:100%;min-height:46px;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--text);font:16px var(--body)}
+textarea{min-height:90px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--mint)}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:14px;font-weight:500;color:var(--muted)}
+.check input{width:20px;min-height:20px;height:20px;margin-top:2px;accent-color:var(--mint);flex:none}
+.status{min-height:24px;font-size:15px}
+.status.ok{color:var(--ok)}.status.err{color:#F0B49C}
+
+/* faq */
+.faq{display:flex;flex-direction:column;gap:12px;max-width:820px}
+details{border:1px solid var(--line);border-radius:16px;padding:18px 22px}
+summary{cursor:pointer;font-weight:700;font-size:17px}
+details p{margin-top:10px;color:var(--muted)}
+
+footer{border-top:1px solid var(--line);padding-block:32px;color:var(--soft);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>Nordic Links</a>
+    <nav aria-label="Main">
+      <a href="#smart">Smart caddie</a>
+      <a href="#commands">Commands</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn small" href="#beta">Join the beta</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero-wrap">
+    <div class="contours" aria-hidden="true">
+      <svg viewBox="0 0 1080 560" preserveAspectRatio="none" fill="none" stroke="#86C5B5" stroke-width="1.5">
+        <path d="M0 120 C180 60 300 180 480 130 S800 40 1080 110"/><path d="M0 190 C200 130 320 250 500 200 S820 110 1080 180"/>
+        <path d="M0 260 C220 200 340 320 520 270 S840 180 1080 250"/><path d="M0 330 C240 270 360 390 540 340 S860 250 1080 320"/>
+        <path d="M0 400 C260 340 380 460 560 410 S880 320 1080 390"/><path d="M0 470 C280 410 400 530 580 480 S900 390 1080 460"/>
+      </svg>
+    </div>
+    <div class="wrap hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Voice control for GSPro</div>
+        <h1>Talk to <span>your bay.</span></h1>
+        <p class="lead">Change clubs, aim and views with your voice. Ask what to hit, and get the right club for the distance, slope and lie. Stay in your stance and never walk back to the keyboard.</p>
+        <div class="ctas">
+          <a class="btn" href="#beta">Apply for the closed beta</a>
+          <a class="btn ghost" href="#smart">See the smart caddie</a>
+        </div>
+        <div class="chips">
+          <span class="chip"><i></i>Runs locally on your sim PC</span>
+          <span class="chip"><i></i>Works with any launch monitor GSPro supports</span>
+        </div>
+      </div>
+
+      <div class="talk" aria-label="Example conversation">
+        <div class="talk-top">
+          <span class="listening">LISTENING FOR “CADDIE”</span>
+          <span class="wave" aria-hidden="true"><b></b><b></b><b></b><b></b><b></b></span>
+        </div>
+        <div class="say">Caddie, seven iron</div>
+        <div class="done"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>7 iron selected</div>
+        <div class="say">Caddie, what club?</div>
+        <div class="done"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg><span><em>“90 to the pin, deep rough. Seven iron. Plays 135.”</em></span></div>
+        <div class="say">Caddie, flyover</div>
+        <div class="done"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Hole flyover</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap" style="padding-bottom:clamp(56px,8vw,96px)">
+    <div class="video" role="img" aria-label="Demo video placeholder">
+      <div class="play"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="#86C5B5"><path d="M8 5v14l11-7z"/></svg></div>
+      <h3 style="font-size:22px">Demo video</h3>
+      <p>Coming soon: a full round played hands-free.</p>
+    </div>
+  </div>
+
+  <section id="smart">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Smart caddie</div>
+        <h2>Ask what to hit. It reads the hole for you.</h2>
+        <p class="lead">Say “Caddie, what club?” and it reads the distance, slope and lie straight from GSPro, works out how the shot plays, and picks the club from the bag of the player who is up. It switches bags when GSPro moves to the next player.</p>
+      </div>
+      <div class="smart">
+        <div class="calc" aria-label="Example calculation">
+          <div class="r"><span>Distance to pin</span><b>89.9 m</b></div>
+          <div class="r"><span>Slope</span><b>+4.7 m uphill</b></div>
+          <div class="r"><span>Lie</span><b>Deep rough · 70 %</b></div>
+          <div class="r total"><span>Plays like</span><b>135 m → 7 iron</b></div>
+        </div>
+        <div>
+          <p class="lead">From a bad lie it never leaves you short, and it never hands you a wood out of deep rough. You can also tell it yourself:</p>
+          <div class="lies">
+            <div class="lie"><span>“180 to target, 5 downhill”</span><b>slope</b></div>
+            <div class="lie"><span>“bunker, 45 to pin”</span><b>lie</b></div>
+            <div class="lie"><span>“150 yards, headwind 4”</span><b>wind</b></div>
+            <div class="lie"><span>“… and 3 meters up”</span><b>add-on</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="commands">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Say “Caddie” …</div>
+        <h2>Plain golf language</h2>
+        <p class="lead">It ignores chatter and ball strikes, and only wakes up when you say “Caddie”.</p>
+      </div>
+      <div class="grid4">
+        <div class="card"><div class="eyebrow">Clubs</div><div class="cmd">“seven iron”</div><div class="cmd">“three wood”</div><div class="cmd">“sand wedge”</div><small>Driver to putter, any club in the player’s GSPro bag.</small></div>
+        <div class="card"><div class="eyebrow">Club up · down</div><div class="cmd">“club up”</div><div class="cmd">“club down”</div><small>One step at a time, just like the buttons.</small></div>
+        <div class="card"><div class="eyebrow">Aim</div><div class="cmd">“aim right”</div><div class="cmd">“aim left three”</div><div class="cmd">“reset aim”</div><small>Say it again to keep moving.</small></div>
+        <div class="card"><div class="eyebrow">Views</div><div class="cmd">“flyover”</div><div class="cmd">“heat map”</div><div class="cmd">“scorecard”</div><small>Plus pin, green grid, shot cam and mulligan.</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Setup</div>
+        <h2>Up and running in minutes</h2>
+      </div>
+      <ol class="steps">
+        <li><span class="n">1</span><h3>Install on your sim PC</h3><p>One installer. It finds GSPro and your microphone on its own.</p></li>
+        <li><span class="n">2</span><h3>Say “Caddie”</h3><p>Follow with a command in plain golf language. The caddie answers out loud.</p></li>
+        <li><span class="n">3</span><h3>GSPro reacts</h3><p>The club, aim or view changes instantly. Then you hit.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap specs">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div class="eyebrow">Under the hood</div>
+        <div class="big"><strong>0.07</strong><span><b>seconds</b>speech to text</span></div>
+        <p class="lead">Measured on a sim PC with an RTX 5070. Without a graphics card it still works, at about one second per command.</p>
+      </div>
+      <div>
+        <div class="facts">
+          <div class="card"><h3>Your voice stays home</h3><small>Speech is recognised on your own PC. No audio is sent anywhere.</small></div>
+          <div class="card"><h3>Any USB mic</h3><small>A desk mic two metres from the tee works fine.</small></div>
+          <div class="card"><h3>Every player’s bag</h3><small>Uses each player’s GSPro bag and switches when the turn changes.</small></div>
+          <div class="card"><h3>Any launch monitor</h3><small>It talks to GSPro itself, so it works with whatever you hit into.</small></div>
+        </div>
+        <p class="req"><strong>Requirements:</strong> Windows PC running GSPro and a microphone. An NVIDIA graphics card is recommended for the fastest response.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="beta">
+    <div class="wrap beta">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="eyebrow">Closed beta</div>
+        <h2>Be one of the first three testers</h2>
+        <p class="lead">We are opening three test spots for GSPro players. Selected testers get a personal download link and early pricing at launch.</p>
+        <div class="spots" aria-label="Three beta spots"><span class="spot">1</span><span class="spot">2</span><span class="spot">3</span></div>
+      </div>
+      <form id="betaForm" novalidate>
+        <div class="row2">
+          <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="f-lm">Launch monitor</label>
+            <select id="f-lm" name="launch_monitor" required>
+              <option value="">Choose one</option>
+              <option>ProTee VX</option><option>Uneekor</option><option>Bushnell / Foresight</option><option>SkyTrak</option>
+              <option>Garmin R10</option><option>Mevo+</option><option>Square Golf</option><option>Other</option>
+            </select>
+          </div>
+          <div class="field"><label for="f-country">Country</label><input id="f-country" name="country" autocomplete="country-name"></div>
+        </div>
+        <div class="field"><label for="f-gpu">Graphics card (if you know)</label><input id="f-gpu" name="gpu" placeholder="e.g. RTX 4070"></div>
+        <div class="field"><label for="f-why">Anything else we should know?</label><textarea id="f-why" name="notes"></textarea></div>
+        <label class="check" for="f-ok"><input id="f-ok" name="consent" type="checkbox" required>I agree to be contacted about the beta. My details are only used for this.</label>
+        <button class="btn" type="submit">Apply for a beta spot</button>
+        <p class="status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head"><div class="eyebrow">FAQ</div><h2>Questions</h2></div>
+      <div class="faq">
+        <details><summary>Does it cost anything?</summary><p>The beta is free. Pricing will be announced at launch, and beta testers get an early price.</p></details>
+        <details><summary>Does my voice leave my PC?</summary><p>No. Speech recognition runs locally on your sim PC. Nothing is recorded or uploaded.</p></details>
+        <details><summary>How does it know the distance and lie?</summary><p>It reads the player box GSPro already shows on screen: distance to the pin, slope and lie. You can always say them yourself instead.</p></details>
+        <details><summary>Which launch monitors are supported?</summary><p>Any launch monitor that works with GSPro. The voice control talks to GSPro directly, not to your launch monitor.</p></details>
+        <details><summary>Does it work on Mac?</summary><p>No. It runs on the same Windows PC as GSPro.</p></details>
+        <details><summary>What language do I speak?</summary><p>English golf terms: “seven iron”, “sand wedge”, “aim left”. Accents are fine.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Nordic Links</span>
+    <span>Independent product. Not affiliated with or endorsed by GSPro.</span>
+  </div>
+</footer>
+
+<script>
+// Sett SIGNUP_ENDPOINT til skjema-tjenesten (f.eks. Formspree) når siden publiseres på eget domene.
+const SIGNUP_ENDPOINT = "";
+const form = document.getElementById("betaForm");
+const statusEl = document.getElementById("formStatus");
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  statusEl.className = "status";
+  if (!form.checkValidity()) {
+    const bad = form.querySelector(":invalid");
+    statusEl.className = "status err";
+    statusEl.textContent = "Please fill in " + (bad.labels && bad.labels[0] ? bad.labels[0].textContent.trim().toLowerCase() : "the required fields") + ".";
+    bad.focus();
+    return;
+  }
+  if (!SIGNUP_ENDPOINT) {
+    statusEl.className = "status err";
+    statusEl.textContent = "Sign-ups open soon. This form is not live yet.";
+    return;
+  }
+  try {
+    const r = await fetch(SIGNUP_ENDPOINT, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(form) });
+    if (!r.ok) throw new Error();
+    form.reset();
+    statusEl.className = "status ok";
+    statusEl.textContent = "Thanks! You are on the list. We will email you if you get a spot.";
+  } catch {
+    statusEl.className = "status err";
+    statusEl.textContent = "Could not send. Check your connection and try again.";
+  }
+});
+</script>
+</body>
+</html>
