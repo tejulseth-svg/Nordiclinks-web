@@ -227,7 +227,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <button role="tab" aria-selected="false" data-clip="green">Green</button>
     </div>
     <div class="video" id="clipBox">
-      <video id="clipVideo" controls playsinline preload="metadata" hidden></video>
+      <video id="clipVideo" controls playsinline preload="metadata" hidden aria-label="Nordic Links demo"></video>
       <div class="ph" id="clipPh">
         <div class="play"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="#86C5B5"><path d="M8 5v14l11-7z"/></svg></div>
         <h3 style="font-size:22px" id="clipTitle">From the tee</h3>
@@ -398,14 +398,14 @@ form.addEventListener("submit", async (e) => {
     statusEl.textContent = "Could not send. Check your connection and try again.";
   }
 });
-// Én demovideo (videos/demo.mp4). Knappene hopper til kapitlene; sett start-sekund når videoen er klippet.
+// Én demovideo (videos/demo.mp4). Knappene hopper til kapitlene (start-sekund i videoen).
 const CHAPTERS = {
   tee:{t:0, title:"From the tee", text:"Pick the driver and line up the shot without touching the keyboard."},
-  fairway:{t:0, title:"From the fairway", text:"“Caddie, what club?” reads distance and slope from GSPro."},
-  rough:{t:0, title:"From the rough", text:"Light rough costs a little distance. The caddie adds it."},
-  deep:{t:0, title:"From deep rough", text:"No woods, never short. It clubs up for the lost carry."},
-  bunker:{t:0, title:"From the bunker", text:"Greenside or fairway bunker, it picks the right wedge."},
-  green:{t:0, title:"On the green", text:"Putter, green grid and pin, all by voice."}
+  fairway:{t:28.2, title:"From the fairway", text:"“Caddie, what club?” reads distance and slope from GSPro."},
+  rough:{t:55.8, title:"From the rough", text:"Light rough costs a little distance. The caddie adds it."},
+  deep:{t:85.4, title:"From deep rough", text:"No woods, never short. It clubs up for the lost carry."},
+  bunker:{t:115.4, title:"From the bunker", text:"Greenside or fairway bunker, it picks the right wedge."},
+  green:{t:135.9, title:"On the green", text:"Putter, green grid and pin, all by voice."}
 };
 const vid=document.getElementById("clipVideo"), ph=document.getElementById("clipPh");
 vid.onloadeddata=()=>{vid.hidden=false; ph.hidden=true;};
