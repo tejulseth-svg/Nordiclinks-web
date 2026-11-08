@@ -76,6 +76,13 @@ nav a:hover{color:var(--text)}
 .done svg{flex:none;margin-top:4px}
 .done em{font-style:normal;color:var(--text)}
 
+/* demo clips */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.tabs button{min-height:44px;padding:0 18px;border-radius:22px;border:1px solid var(--line);background:transparent;color:var(--muted);font:600 15px var(--body);cursor:pointer}
+.tabs button:hover{border-color:var(--mint);color:var(--text)}
+.tabs button[aria-selected="true"]{background:var(--mint);border-color:var(--mint);color:var(--ink)}
+.video video{position:absolute;inset:0;width:100%;height:100%;border-radius:24px;background:#000;object-fit:contain}
+.video .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
 /* demo video */
 .video{position:relative;aspect-ratio:16/9;max-width:100%;border:1px solid var(--line);border-radius:24px;background:radial-gradient(circle at 70% 30%,#24414A 0,var(--panel) 60%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:24px}
 .play{width:84px;height:84px;border-radius:42px;border:1px solid var(--mint);display:flex;align-items:center;justify-content:center}
@@ -206,12 +213,28 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     </div>
   </div>
 
-  <div class="wrap" style="padding-bottom:clamp(56px,8vw,96px)">
-    <div class="video" role="img" aria-label="Demo video placeholder">
-      <div class="play"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="#86C5B5"><path d="M8 5v14l11-7z"/></svg></div>
-      <h3 style="font-size:22px">Demo video</h3>
-      <p>Coming soon: a full round played hands-free.</p>
+  <div class="wrap" style="padding-bottom:clamp(56px,8vw,96px)" id="demo">
+    <div class="sec-head" style="margin-bottom:24px">
+      <div class="eyebrow">See it on every lie</div>
+      <h2>From the tee to the green</h2>
     </div>
+    <div class="tabs" role="tablist" aria-label="Demo clips">
+      <button role="tab" aria-selected="true" data-clip="tee">Tee</button>
+      <button role="tab" aria-selected="false" data-clip="fairway">Fairway</button>
+      <button role="tab" aria-selected="false" data-clip="rough">Rough</button>
+      <button role="tab" aria-selected="false" data-clip="deep">Deep rough</button>
+      <button role="tab" aria-selected="false" data-clip="bunker">Bunker</button>
+      <button role="tab" aria-selected="false" data-clip="green">Green</button>
+    </div>
+    <div class="video" id="clipBox">
+      <video id="clipVideo" controls playsinline preload="metadata" hidden></video>
+      <div class="ph" id="clipPh">
+        <div class="play"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="#86C5B5"><path d="M8 5v14l11-7z"/></svg></div>
+        <h3 style="font-size:22px" id="clipTitle">From the tee</h3>
+        <p id="clipText">Clip coming soon.</p>
+      </div>
+    </div>
+  </div>
   </div>
 
   <section id="smart">
@@ -375,6 +398,27 @@ form.addEventListener("submit", async (e) => {
     statusEl.textContent = "Could not send. Check your connection and try again.";
   }
 });
+// Demo-klipp: legg filene i videos/ (tee.mp4, fairway.mp4, rough.mp4, deep.mp4, bunker.mp4, green.mp4)
+const CLIPS = {
+  tee:{title:"From the tee", text:"Pick the driver and line up the shot without touching the keyboard."},
+  fairway:{title:"From the fairway", text:"“Caddie, what club?” reads distance and slope from GSPro."},
+  rough:{title:"From the rough", text:"Light rough costs a little distance. The caddie adds it."},
+  deep:{title:"From deep rough", text:"No woods, never short. It clubs up for the lost carry."},
+  bunker:{title:"From the bunker", text:"Greenside or fairway bunker, it picks the right wedge."},
+  green:{title:"On the green", text:"Putter, green grid and pin, all by voice."}
+};
+const vid=document.getElementById("clipVideo"), ph=document.getElementById("clipPh");
+function showClip(key){
+  document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-selected", b.dataset.clip===key));
+  document.getElementById("clipTitle").textContent=CLIPS[key].title;
+  document.getElementById("clipText").textContent=CLIPS[key].text+" Clip coming soon.";
+  vid.hidden=true; ph.hidden=false;
+  vid.onloadeddata=()=>{vid.hidden=false; ph.hidden=true;};
+  vid.onerror=()=>{vid.hidden=true; ph.hidden=false;};
+  vid.src="videos/"+key+".mp4";
+}
+document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>showClip(b.dataset.clip)));
+showClip("tee");
 </script>
 </body>
 </html>
