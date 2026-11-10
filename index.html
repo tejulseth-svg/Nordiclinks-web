@@ -110,6 +110,13 @@ nav a:hover{color:var(--text)}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:10px;min-width:0}
 .card .eyebrow{font-size:11px}
 .cmd{font-size:18px;font-weight:600}
+.price-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:820px){.price-grid{grid-template-columns:minmax(0,1fr)}}
+.card.price{gap:14px;padding:28px}
+.card.price.main{border-color:var(--mint)}
+.card.price .amount{font:800 clamp(34px,5vw,46px)/1 var(--display,var(--body));color:var(--text);display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.card.price .amount span{font:600 15px var(--body);color:var(--muted)}
+.card.price a{color:var(--mint)}
 .card small{color:var(--muted);font-size:14px;line-height:1.5}
 
 /* steps */
@@ -168,6 +175,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <nav aria-label="Main">
       <a href="#smart">Smart caddie</a>
       <a href="#commands">Commands</a>
+      <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
       <a class="btn small" href="#beta">Join the beta</a>
     </nav>
@@ -315,12 +323,39 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     </div>
   </section>
 
+  <section id="pricing">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Pricing</div>
+        <h2>One price. No subscription.</h2>
+        <p class="lead">Pay once and keep it. Every update is free.</p>
+      </div>
+      <div class="price-grid">
+        <div class="card price main">
+          <div class="eyebrow">Nordic Links</div>
+          <div class="amount">$49<span>one-time</span></div>
+          <small>Voice control and the smart caddie for GSPro. Free updates, no monthly fee.</small>
+        </div>
+        <div class="card price">
+          <div class="eyebrow">First 10 buyers</div>
+          <div class="amount">50% off<span>$24.50</span></div>
+          <small>The first ten licences at launch are half price.</small>
+        </div>
+        <div class="card price">
+          <div class="eyebrow">Beta testers</div>
+          <div class="amount">Free</div>
+          <small>Selected testers keep their licence for good, as a thank-you. <a href="#beta">Apply for the beta</a>.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="beta">
     <div class="wrap beta">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div class="eyebrow">Closed beta</div>
         <h2>Be one of the first three testers</h2>
-        <p class="lead">We are opening three test spots for GSPro players. Selected testers get a personal download link and early pricing at launch.</p>
+        <p class="lead">We are opening three test spots for GSPro players. Selected testers get a personal download link and a free licence at launch.</p>
         <div class="spots" aria-label="Three beta spots"><span class="spot">1</span><span class="spot">2</span><span class="spot">3</span></div>
       </div>
       <form id="betaForm" novalidate>
@@ -351,7 +386,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="wrap">
       <div class="sec-head"><div class="eyebrow">FAQ</div><h2>Questions</h2></div>
       <div class="faq">
-        <details><summary>Does it cost anything?</summary><p>The beta is free. Pricing will be announced at launch, and beta testers get an early price.</p></details>
+        <details><summary>Does it cost anything?</summary><p>Nordic Links is a one-time purchase of $49 with free updates. No subscription. The first ten buyers get 50% off, and beta testers get their licence free.</p></details>
         <details><summary>Does my voice leave my PC?</summary><p>No. Speech recognition runs locally on your sim PC. Nothing is recorded or uploaded.</p></details>
         <details><summary>How does it know the distance and lie?</summary><p>It reads the player box GSPro already shows on screen: distance to the pin, slope and lie. You can always say them yourself instead.</p></details>
         <details><summary>Which launch monitors are supported?</summary><p>Any launch monitor that works with GSPro. The voice control talks to GSPro directly, not to your launch monitor.</p></details>
