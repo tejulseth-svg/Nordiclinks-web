@@ -82,6 +82,7 @@ nav a:hover{color:var(--text)}
 .tabs button:hover{border-color:var(--mint);color:var(--text)}
 .tabs button[aria-selected="true"]{background:var(--mint);border-color:var(--mint);color:var(--ink)}
 .video video{position:absolute;inset:0;width:100%;height:100%;border-radius:24px;background:#000;object-fit:contain}
+.video .ph[hidden]{display:none}
 .video .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
 /* demo video */
 .video{position:relative;aspect-ratio:16/9;max-width:100%;border:1px solid var(--line);border-radius:24px;background:radial-gradient(circle at 70% 30%,#24414A 0,var(--panel) 60%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:24px}
@@ -241,10 +242,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   <source src="videos/demo.mp4" type="video/mp4">
 </video>
 
-      <div class="ph" id="clipPh">
+      <div class="ph" id="clipPh" hidden>
         <div class="play"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="#86C5B5"><path d="M8 5v14l11-7z"/></svg></div>
         <h3 style="font-size:22px" id="clipTitle">Meet the caddie</h3>
-        <p id="clipText">Clip coming soon.</p>
+        <p id="clipText"></p>
       </div>
     </div>
   </div>
@@ -410,7 +411,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 <script>
 // Sett SIGNUP_ENDPOINT til skjema-tjenesten (f.eks. Formspree) når siden publiseres på eget domene.
-const SIGNUP_ENDPOINT = "[formspree.io](https://formspree.io/f/xljbrjeg)";
+const SIGNUP_ENDPOINT = "https://formspree.io/f/xljbrjeg";
 
 const form = document.getElementById("betaForm");
 const statusEl = document.getElementById("formStatus");
@@ -451,9 +452,6 @@ const CHAPTERS = {
   tee:{t:110.5, title:"What club?", text:"Reads distance, slope and lie from GSPro and picks the club."}
 };
 const vid=document.getElementById("clipVideo"), ph=document.getElementById("clipPh");
-vid.onloadeddata=()=>{vid.hidden=false; ph.hidden=true;};
-vid.onerror=()=>{vid.hidden=true; ph.hidden=false;};
-vid.src="videos/demo.mp4";
 function showClip(key){
   document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-selected", b.dataset.clip===key));
   document.getElementById("clipTitle").textContent=CHAPTERS[key].title;
