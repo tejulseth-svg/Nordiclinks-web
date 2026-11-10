@@ -219,18 +219,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <h2>From the tee to the green</h2>
     </div>
     <div class="tabs" role="tablist" aria-label="Demo clips">
-      <button role="tab" aria-selected="true" data-clip="tee">Tee</button>
-      <button role="tab" aria-selected="false" data-clip="fairway">Fairway</button>
-      <button role="tab" aria-selected="false" data-clip="rough">Rough</button>
-      <button role="tab" aria-selected="false" data-clip="deep">Deep rough</button>
-      <button role="tab" aria-selected="false" data-clip="bunker">Bunker</button>
+      <button role="tab" aria-selected="true" data-clip="hi">Meet the caddie</button>
       <button role="tab" aria-selected="false" data-clip="green">Green</button>
+      <button role="tab" aria-selected="false" data-clip="rough">Rough</button>
+      <button role="tab" aria-selected="false" data-clip="bunker">Bunker</button>
+      <button role="tab" aria-selected="false" data-clip="scorecard">Scorecard</button>
+      <button role="tab" aria-selected="false" data-clip="clear">Clear view</button>
+      <button role="tab" aria-selected="false" data-clip="tee">What club?</button>
     </div>
     <div class="video" id="clipBox">
-      <video id="clipVideo" controls playsinline preload="metadata" hidden aria-label="Nordic Links demo"></video>
+      <video id="clipVideo" controls playsinline preload="metadata" poster="videos/poster.jpg" hidden aria-label="Nordic Links demo"></video>
       <div class="ph" id="clipPh">
         <div class="play"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="#86C5B5"><path d="M8 5v14l11-7z"/></svg></div>
-        <h3 style="font-size:22px" id="clipTitle">From the tee</h3>
+        <h3 style="font-size:22px" id="clipTitle">Meet the caddie</h3>
         <p id="clipText">Clip coming soon.</p>
       </div>
     </div>
@@ -401,12 +402,13 @@ form.addEventListener("submit", async (e) => {
 });
 // Én demovideo (videos/demo.mp4). Knappene hopper til kapitlene (start-sekund i videoen).
 const CHAPTERS = {
-  tee:{t:0, title:"From the tee", text:"Pick the driver and line up the shot without touching the keyboard."},
-  fairway:{t:28.2, title:"From the fairway", text:"“Caddie, what club?” reads distance and slope from GSPro."},
-  rough:{t:55.8, title:"From the rough", text:"Light rough costs a little distance. The caddie adds it."},
-  deep:{t:85.4, title:"From deep rough", text:"No woods, never short. It clubs up for the lost carry."},
-  bunker:{t:115.4, title:"From the bunker", text:"Greenside or fairway bunker, it picks the right wedge."},
-  green:{t:135.9, title:"On the green", text:"Putter, green grid and pin, all by voice."}
+  hi:{t:0, title:"Meet the caddie", text:"Say “Caddie” and she answers. Flyover of the hole by voice."},
+  green:{t:24.75, title:"Around the green", text:"Heat map on and off, lob wedge, all by voice."},
+  rough:{t:45.25, title:"From the rough", text:"Light rough costs a little distance. The caddie adds it."},
+  bunker:{t:60.5, title:"From the bunker", text:"Greenside or fairway bunker, it picks the right wedge."},
+  scorecard:{t:79, title:"Scorecard", text:"Check the card without leaving your stance."},
+  clear:{t:97.75, title:"Clear view", text:"Stuck behind trees? Clear the view by voice."},
+  tee:{t:110.5, title:"What club?", text:"Reads distance, slope and lie from GSPro and picks the club."}
 };
 const vid=document.getElementById("clipVideo"), ph=document.getElementById("clipPh");
 vid.onloadeddata=()=>{vid.hidden=false; ph.hidden=true;};
@@ -415,11 +417,12 @@ vid.src="videos/demo.mp4";
 function showClip(key){
   document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-selected", b.dataset.clip===key));
   document.getElementById("clipTitle").textContent=CHAPTERS[key].title;
-  document.getElementById("clipText").textContent=CHAPTERS[key].text+" Video coming soon.";
+  document.getElementById("clipText").textContent=CHAPTERS[key].text;
   if(!vid.hidden){ vid.currentTime=CHAPTERS[key].t; vid.play().catch(()=>{}); }
 }
 document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>showClip(b.dataset.clip)));
-showClip("tee");
+document.getElementById("clipTitle").textContent=CHAPTERS.hi.title;
+document.getElementById("clipText").textContent=CHAPTERS.hi.text;
 </script>
 </body>
 </html>
