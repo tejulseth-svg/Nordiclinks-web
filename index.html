@@ -236,7 +236,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <button role="tab" aria-selected="false" data-clip="tee">What club?</button>
     </div>
     <div class="video" id="clipBox">
-      <video id="clipVideo" controls playsinline preload="metadata" poster="videos/poster.jpg" hidden aria-label="Nordic Links demo"></video>
+      <video id="clipVideo" controls playsinline preload="metadata"
+  poster="videos/poster.jpg" aria-label="Nordic Links demo">
+  <source src="videos/demo.mp4" type="video/mp4">
+</video>
+
       <div class="ph" id="clipPh">
         <div class="play"><svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="#86C5B5"><path d="M8 5v14l11-7z"/></svg></div>
         <h3 style="font-size:22px" id="clipTitle">Meet the caddie</h3>
