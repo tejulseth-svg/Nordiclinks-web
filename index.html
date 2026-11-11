@@ -157,6 +157,12 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--mint)}
 .check{display:flex;gap:10px;align-items:flex-start;font-size:14px;font-weight:500;color:var(--muted)}
 .check input{width:20px;min-height:20px;height:20px;margin-top:2px;accent-color:var(--mint);flex:none}
 .status{min-height:24px;font-size:15px}
+.review-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:clamp(40px,6vw,72px)}
+@media (max-width:820px){.review-grid{grid-template-columns:minmax(0,1fr)}}
+.review{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:12px;margin:0}
+.review .stars{color:var(--mint);letter-spacing:2px;font-size:18px}
+.review blockquote{margin:0;line-height:1.55}
+.review figcaption{color:var(--muted);font-size:14px}
 .status.ok{color:var(--ok)}.status.err{color:#F0B49C}
 
 /* faq */
@@ -177,6 +183,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <a href="#smart">Smart caddie</a>
       <a href="#commands">Commands</a>
       <a href="#pricing">Pricing</a>
+      <a href="#reviews">Reviews</a>
       <a href="#faq">FAQ</a>
       <a class="btn small" href="#beta">Join the beta</a>
     </nav>
@@ -387,6 +394,47 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     </div>
   </section>
 
+  <section id="reviews">
+    <div class="wrap">
+      <div id="reviewList" hidden>
+        <div class="sec-head">
+          <div class="eyebrow">Reviews</div>
+          <h2>What players say</h2>
+        </div>
+        <div class="review-grid" id="reviewGrid"></div>
+      </div>
+      <div class="beta">
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div class="eyebrow">Your review</div>
+          <h2>Tried Nordic Links? Tell us how it went.</h2>
+          <p class="lead">Honest reviews help other GSPro players decide. We read every review before it is published, and we publish the critical ones too.</p>
+        </div>
+        <form id="reviewForm" novalidate>
+          <input type="hidden" name="form_type" value="review">
+          <input type="hidden" name="_subject" value="New Nordic Links review">
+          <div class="row2">
+            <div class="field"><label for="r-name">Name (shown with your review)</label><input id="r-name" name="name" autocomplete="name" required></div>
+            <div class="field"><label for="r-email">Email (not shown)</label><input id="r-email" name="email" type="email" autocomplete="email"></div>
+          </div>
+          <div class="field"><label for="r-rating">Rating</label>
+            <select id="r-rating" name="rating" required>
+              <option value="">Choose a rating</option>
+              <option value="5">★★★★★ 5 of 5</option>
+              <option value="4">★★★★☆ 4 of 5</option>
+              <option value="3">★★★☆☆ 3 of 5</option>
+              <option value="2">★★☆☆☆ 2 of 5</option>
+              <option value="1">★☆☆☆☆ 1 of 5</option>
+            </select>
+          </div>
+          <div class="field"><label for="r-text">Your review</label><textarea id="r-text" name="review" required maxlength="1200" style="min-height:130px"></textarea></div>
+          <label class="check" for="r-ok"><input id="r-ok" name="consent_publish" type="checkbox" required>You may publish my review with my name on getnordiclinks.com.</label>
+          <button class="btn" type="submit">Send review</button>
+          <p class="status" id="reviewStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <section id="faq">
     <div class="wrap">
       <div class="sec-head"><div class="eyebrow">FAQ</div><h2>Questions</h2></div>
@@ -413,34 +461,54 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 // Sett SIGNUP_ENDPOINT til skjema-tjenesten (f.eks. Formspree) når siden publiseres på eget domene.
 const SIGNUP_ENDPOINT = "https://formspree.io/f/xljbrjeg";
 
-const form = document.getElementById("betaForm");
-const statusEl = document.getElementById("formStatus");
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  statusEl.className = "status";
-  if (!form.checkValidity()) {
-    const bad = form.querySelector(":invalid");
-    statusEl.className = "status err";
-    statusEl.textContent = "Please fill in " + (bad.labels && bad.labels[0] ? bad.labels[0].textContent.trim().toLowerCase() : "the required fields") + ".";
-    bad.focus();
-    return;
+function wireForm(formId, statusId, okText) {
+  const form = document.getElementById(formId);
+  const statusEl = document.getElementById(statusId);
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    statusEl.className = "status";
+    if (!form.checkValidity()) {
+      const bad = form.querySelector(":invalid");
+      statusEl.className = "status err";
+      statusEl.textContent = "Please fill in " + (bad.labels && bad.labels[0] ? bad.labels[0].textContent.trim().toLowerCase() : "the required fields") + ".";
+      bad.focus();
+      return;
+    }
+    if (!SIGNUP_ENDPOINT) {
+      statusEl.className = "status err";
+      statusEl.textContent = "This form is not live yet.";
+      return;
+    }
+    try {
+      const r = await fetch(SIGNUP_ENDPOINT, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(form) });
+      if (!r.ok) throw new Error();
+      form.reset();
+      statusEl.className = "status ok";
+      statusEl.textContent = okText;
+    } catch {
+      statusEl.className = "status err";
+      statusEl.textContent = "Could not send. Check your connection and try again.";
+    }
+  });
+}
+wireForm("betaForm", "formStatus", "Thanks! You are on the list. We will email you if you get a spot.");
+wireForm("reviewForm", "reviewStatus", "Thanks for your review! We read it before it is published.");
+
+// Godkjente anmeldelser. Legg inn ekte anmeldelser her: {name:"Navn", where:"Land / launch monitor", rating:5, text:"..."}
+const REVIEWS = [];
+if (REVIEWS.length) {
+  const grid = document.getElementById("reviewGrid");
+  for (const r of REVIEWS) {
+    const fig = document.createElement("figure"); fig.className = "review";
+    const st = document.createElement("div"); st.className = "stars";
+    st.textContent = "★".repeat(r.rating) + "☆".repeat(5 - r.rating);
+    st.setAttribute("aria-label", r.rating + " of 5 stars");
+    const q = document.createElement("blockquote"); q.textContent = r.text;
+    const c = document.createElement("figcaption"); c.textContent = r.where ? r.name + " · " + r.where : r.name;
+    fig.append(st, q, c); grid.append(fig);
   }
-  if (!SIGNUP_ENDPOINT) {
-    statusEl.className = "status err";
-    statusEl.textContent = "Sign-ups open soon. This form is not live yet.";
-    return;
-  }
-  try {
-    const r = await fetch(SIGNUP_ENDPOINT, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(form) });
-    if (!r.ok) throw new Error();
-    form.reset();
-    statusEl.className = "status ok";
-    statusEl.textContent = "Thanks! You are on the list. We will email you if you get a spot.";
-  } catch {
-    statusEl.className = "status err";
-    statusEl.textContent = "Could not send. Check your connection and try again.";
-  }
-});
+  document.getElementById("reviewList").hidden = false;
+}
 // Én demovideo (videos/demo.mp4). Knappene hopper til kapitlene (start-sekund i videoen).
 const CHAPTERS = {
   hi:{t:0, title:"Meet the caddie", text:"Say “Caddie” and she answers. Flyover of the hole by voice."},
