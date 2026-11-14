@@ -185,7 +185,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <a href="#pricing">Pricing</a>
       <a href="#reviews">Reviews</a>
       <a href="#faq">FAQ</a>
-      <a class="btn small" href="#beta">Join the beta</a>
+      <a class="btn small" href="#beta">Coming soon</a>
     </nav>
   </div>
 </header>
@@ -205,7 +205,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <h1>Your caddie <span>is listening.</span></h1>
         <p class="lead">Change clubs, aim and views with your voice. Ask what to hit, and get the right club for the distance, slope and lie. Stay in your stance and never walk back to the keyboard.</p>
         <div class="ctas">
-          <a class="btn" href="#beta">Apply for the closed beta</a>
+          <a class="btn" href="#demo">Watch the demo</a>
           <a class="btn ghost" href="#smart">See the smart caddie</a>
         </div>
         <div class="chips">
@@ -356,7 +356,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <div class="card price">
           <div class="eyebrow">Beta testers</div>
           <div class="amount">Free</div>
-          <small>Selected testers keep their licence for good, as a thank-you. <a href="#beta">Apply for the beta</a>.</small>
+          <small>Our beta testers keep their licence for good, as a thank-you. The beta is now full.</small>
         </div>
       </div>
     </div>
@@ -365,32 +365,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   <section id="beta">
     <div class="wrap beta">
       <div style="display:flex;flex-direction:column;gap:16px">
-        <div class="eyebrow">Closed beta</div>
-        <h2>Be one of the first three testers</h2>
-        <p class="lead">We are opening three test spots for GSPro players. Selected testers get a personal download link and a free licence at launch.</p>
-        <div class="spots" aria-label="Three beta spots"><span class="spot">1</span><span class="spot">2</span><span class="spot">3</span></div>
+        <div class="eyebrow">Coming soon</div>
+        <h2>The closed beta is full</h2>
+        <p class="lead">Thank you to everyone who applied. Our testers are putting Nordic Links through its paces on their own sims right now, and we are using their feedback to get it ready for launch.</p>
       </div>
-      <form id="betaForm" novalidate>
-        <div class="row2">
-          <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
-          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
-        </div>
-        <div class="row2">
-          <div class="field"><label for="f-lm">Launch monitor</label>
-            <select id="f-lm" name="launch_monitor" required>
-              <option value="">Choose one</option>
-              <option>ProTee VX</option><option>Uneekor</option><option>Bushnell / Foresight</option><option>SkyTrak</option>
-              <option>Garmin R10</option><option>Mevo+</option><option>Square Golf</option><option>Other</option>
-            </select>
-          </div>
-          <div class="field"><label for="f-country">Country</label><input id="f-country" name="country" autocomplete="country-name"></div>
-        </div>
-        <div class="field"><label for="f-gpu">Graphics card (if you know)</label><input id="f-gpu" name="gpu" placeholder="e.g. RTX 4070"></div>
-        <div class="field"><label for="f-why">Anything else we should know?</label><textarea id="f-why" name="notes"></textarea></div>
-        <label class="check" for="f-ok"><input id="f-ok" name="consent" type="checkbox" required>I agree to be contacted about the beta. My details are only used for this.</label>
-        <button class="btn" type="submit">Apply for a beta spot</button>
-        <p class="status" id="formStatus" role="status" aria-live="polite"></p>
-      </form>
+      <div class="card" style="display:flex;flex-direction:column;gap:12px;align-self:center">
+        <div class="eyebrow">What happens next</div>
+        <p>Nordic Links launches for everyone soon, at $49 one-time with free updates. The first ten buyers get 50% off.</p>
+        <p>Questions? Email <a href="mailto:post@getnordiclinks.com">post@getnordiclinks.com</a>.</p>
+      </div>
     </div>
   </section>
 
@@ -458,8 +441,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 </footer>
 
 <script>
-// Sett SIGNUP_ENDPOINT til skjema-tjenesten (f.eks. Formspree) når siden publiseres på eget domene.
-const SIGNUP_ENDPOINT = "https://formspree.io/f/xljbrjeg";
+// Skjema-tjeneste av (Formspree-kontoen ble sperret 14.11.26). Anmeldelser sendes som e-post til post@.
+const SIGNUP_ENDPOINT = "";
+const REVIEW_MAIL = "post@getnordiclinks.com";
 
 function wireForm(formId, statusId, okText) {
   const form = document.getElementById(formId);
@@ -475,8 +459,11 @@ function wireForm(formId, statusId, okText) {
       return;
     }
     if (!SIGNUP_ENDPOINT) {
-      statusEl.className = "status err";
-      statusEl.textContent = "This form is not live yet.";
+      const d = new FormData(form);
+      const body = [...d.entries()].map(([k, v]) => k + ": " + v).join("\n");
+      location.href = "mailto:" + REVIEW_MAIL + "?subject=" + encodeURIComponent("Nordic Links review") + "&body=" + encodeURIComponent(body);
+      statusEl.className = "status ok";
+      statusEl.textContent = "Your email app should open with the review filled in. Just press send.";
       return;
     }
     try {
@@ -491,7 +478,6 @@ function wireForm(formId, statusId, okText) {
     }
   });
 }
-wireForm("betaForm", "formStatus", "Thanks! You are on the list. We will email you if you get a spot.");
 wireForm("reviewForm", "reviewStatus", "Thanks for your review! We read it before it is published.");
 
 // Godkjente anmeldelser. Legg inn ekte anmeldelser her: {name:"Navn", where:"Land / launch monitor", rating:5, text:"..."}
