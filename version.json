@@ -1,5 +1,5 @@
 {
-  "version": "0.9.3",
-  "url": "https://drive.google.com/file/d/10w7KNUnpXPoUXVQmqebZEKRmFGSY9Ynw/view?usp=sharing",
-  "notes": "Read your bag straight from GSPro. Caddie voice on/off and voice picker in Settings."
+  "version": "0.9.5",
+  "url": "https://drive.google.com/file/d/10w7KNUnpXPoUXVQmqebZEKRmFGSY9Ynw/view?usp=drive_link",
+  "notes": "Aim with distance: say “aim left/right/forward/back” and the caddie asks “How far?”. Club selection now checks GSPro and corrects itself. Better distance reading on the tee."
 }
