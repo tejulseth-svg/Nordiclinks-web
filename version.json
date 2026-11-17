@@ -1,5 +1,5 @@
 {
-  "version": "0.9.5",
-  "url": "https://drive.google.com/file/d/10w7KNUnpXPoUXVQmqebZEKRmFGSY9Ynw/view?usp=drive_link",
-  "notes": "Aim with distance: say “aim left/right/forward/back” and the caddie asks “How far?”. Club selection now checks GSPro and corrects itself. Better distance reading on the tee."
+  "version": "0.9.6",
+  "url": "https://drive.google.com/file/d/10w7KNUnpXPoUXVQmqebZEKRmFGSY9Ynw/view?usp=sharing",
+  "notes": "Aim now understands centimeters, inches and feet, handy on the green. Fixed status badges that showed when they shouldn't. The installer is now code-signed."
 }
