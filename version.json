@@ -1,5 +1,5 @@
 {
-  "version": "0.9.10",
+  "version": "0.9.11",
   "url": "https://drive.google.com/file/d/10w7KNUnpXPoUXVQmqebZEKRmFGSY9Ynw/view?usp=sharing",
-  "notes": "Spoken drop menu: say the options, lateral drop, flag line or rehit when the ball is in water, a penalty area or out of bounds. Much faster reaction, shorter answers, wedge shots now say the swing length (for example three-quarter sand wedge), better handling of fan noise, and a clearer problem report."
+  "notes": "Works on 4K and high-resolution screens, and on stretched pictures. Fixes the aim moving by itself after \"How far?\" (talk and keyboard noise are ignored; answer with a number and unit). Reads feet and inches on the green. New: \"throw club\", \"can you aim\", and \"stop\" now stops and resets the aim. Better microphone handling with a level meter and a Test microphone button. The problem report can include a screenshot of the GSPro window."
 }
