@@ -1,5 +1,5 @@
 {
-  "version": "0.9.11",
+  "version": "0.9.12",
   "url": "https://drive.google.com/file/d/10w7KNUnpXPoUXVQmqebZEKRmFGSY9Ynw/view?usp=sharing",
-  "notes": "Works on 4K and high-resolution screens, and on stretched pictures. Fixes the aim moving by itself after \"How far?\" (talk and keyboard noise are ignored; answer with a number and unit). Reads feet and inches on the green. New: \"throw club\", \"can you aim\", and \"stop\" now stops and resets the aim. Better microphone handling with a level meter and a Test microphone button. The problem report can include a screenshot of the GSPro window."
+  "notes": "Sideways aim now uses the right distance (the distance you say, else the aim marker or the flag) and asks for a \"yes\" before a very big turn. Say \"Caddie, I'm done\" (or your own phrase) to throw the club. Give each player a nickname the caddie uses. Common mishearings of Caddie (Paddy, Daddy, Addy) are accepted before a command. Microphone level meter warns when the sound is too loud. The command list can be printed or saved as a one-page PDF."
 }
