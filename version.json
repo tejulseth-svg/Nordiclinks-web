@@ -1,5 +1,8 @@
 {
-  "version": "0.9.12",
-  "url": "https://drive.google.com/file/d/10w7KNUnpXPoUXVQmqebZEKRmFGSY9Ynw/view?usp=sharing",
-  "notes": "Sideways aim now uses the right distance (the distance you say, else the aim marker or the flag) and asks for a \"yes\" before a very big turn. Say \"Caddie, I'm done\" (or your own phrase) to throw the club. Give each player a nickname the caddie uses. Common mishearings of Caddie (Paddy, Daddy, Addy) are accepted before a command. Microphone level meter warns when the sound is too loud. The command list can be printed or saved as a one-page PDF."
+  "version": "1.0.0",
+  "url": "https://getnordiclinks.com/download",
+  "file": "https://github.com/tejulseth-svg/Nordiclinks-web/releases/latest/download/NordicLinks-Setup.exe",
+  "sha256": "00BB6CBE0A3D9AE862CB7AA7C449CD50EF90771795C351609A87D2856E5B2F3E",
+  "size_mb": 980,
+  "notes": "Nordic Links 1.0: your voice caddie for GSPro. Works on 1080p, 1440p and 4K screens. Spoken drop menu for water, penalty areas and out of bounds. Voice aiming with a safety check for big turns, \"Caddie, I'm done\" to throw the club, player nicknames, a printable command list and a one-page problem report with screenshot. License key: one key works on 2 PCs."
 }

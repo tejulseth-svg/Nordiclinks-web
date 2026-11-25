@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Download Nordic Links</title>
+<meta name="description" content="Download Nordic Links, the voice caddie for GSPro. Windows 10 and 11.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,800&family=Manrope:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#16232A;--panel:#1C2C34;--line:#2F4651;--text:#EDEAE2;--muted:#B3C2C3;--mint:#86C5B5;--mint-hi:#A9DACD;--ink:#10191E;
+  --display:Archivo,'Arial Black','Segoe UI',sans-serif;--body:Manrope,'Segoe UI',system-ui,sans-serif;--mono:Consolas,'Courier New',monospace;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);font-size:17px;line-height:1.6}
+a{color:var(--mint)}a:hover{color:var(--mint-hi)}
+:focus-visible{outline:2px solid var(--mint);outline-offset:3px;border-radius:4px}
+.wrap{max-width:760px;margin:0 auto;padding:32px 16px 72px}
+.brand{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-stretch:125%;font-weight:800;text-decoration:none;color:var(--text);letter-spacing:-.01em}
+.dot{width:12px;height:12px;border-radius:50%;background:var(--mint)}
+h1{font-family:var(--display);font-stretch:125%;font-weight:800;font-size:clamp(30px,5vw,46px);line-height:1.05;letter-spacing:-.02em;margin:28px 0 8px}
+h2{font-family:var(--display);font-stretch:125%;font-weight:800;font-size:22px;margin:36px 0 10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;margin:18px 0;display:flex;flex-direction:column;gap:10px}
+.btn{display:inline-block;align-self:flex-start;background:var(--mint);color:var(--ink);font-weight:700;text-decoration:none;padding:14px 26px;border-radius:10px}
+.btn:hover{background:var(--mint-hi);color:var(--ink)}
+.btn[aria-disabled=true]{opacity:.5;pointer-events:none}
+.mono{font-family:var(--mono);font-size:13px;color:var(--muted);word-break:break-all}
+.muted{color:var(--muted);font-size:15px}
+ol,ul{padding-left:22px;margin:8px 0}li{margin:6px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="brand" href="/"><span class="dot" aria-hidden="true"></span>Nordic Links</a>
+  <h1>Download Nordic Links</h1>
+  <p class="muted">The voice caddie for GSPro. For Windows 10 and 11. Speech recognition runs on your own PC.</p>
+
+  <div class="card">
+    <div id="ver" class="muted">Latest version: checking…</div>
+    <a class="btn" id="dl" href="https://github.com/tejulseth-svg/Nordiclinks-web/releases/latest/download/NordicLinks-Setup.exe" rel="noopener">Download for Windows</a>
+    <div class="muted" id="meta"></div>
+    <div class="muted" id="notes"></div>
+    <div class="mono" id="sha" hidden></div>
+  </div>
+
+  <h2>Install</h2>
+  <ol>
+    <li>Run the downloaded <b>NordicLinks-Setup</b> file. The installer is signed by Trond Erik Julseth, so Windows should show a verified publisher.</li>
+    <li>Start Nordic Links. The setup guide asks for your <b>license key</b>, your microphone, and checks that it can see GSPro.</li>
+    <li>Say “Caddie, what club” – the caddie answers.</li>
+  </ol>
+  <p class="muted">The file is large (about 1 GB) because the speech model is included, so nothing has to be downloaded later. If you have an NVIDIA graphics card, the setup guide offers an optional speed pack (about 1.25 GB) that makes the caddie answer faster.</p>
+
+  <h2>License</h2>
+  <p>Your key looks like <span class="mono">NL-XXXXXXXX-…</span> and arrives by email after purchase. One key works on <b>2 PCs</b>. To move Nordic Links to a new PC, open Settings and choose <b>Deactivate this PC</b> first (or free the PC in your Polar customer portal). Nordic Links checks the key online about once a day and keeps working for 14 days without internet.</p>
+  <p><a href="/#pricing">Pricing and purchase</a></p>
+
+  <h2>Help</h2>
+  <p class="muted">Something wrong? In Nordic Links choose <b>Report a problem</b> and send the file it makes to <a href="mailto:post@getnordiclinks.com">post@getnordiclinks.com</a>. The user manual is inside the app under <b>User manual</b>.</p>
+</div>
+<script>
+// Knappen peker alltid på siste utgave (GitHub Releases: /releases/latest/download/NordicLinks-Setup.exe) og virker også uten JavaScript.
+// Leser /version.json: {"version","url","file","sha256","size_mb","notes"} og viser versjon, størrelse, notater og sjekksum. «file» overstyrer knappen hvis den er satt.
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  fetch('/version.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(v){
+    var file=String(v.file||v.url||'');
+    if(!/^https:\/\//.test(file)) throw 0;
+    $('ver').textContent='Latest version: '+String(v.version||'').slice(0,20);
+    var a=$('dl'); a.href=file; a.removeAttribute('aria-disabled'); a.rel='noopener';
+    if(v.size_mb) $('meta').textContent='About '+Math.round(Number(v.size_mb))+' MB · Windows 10/11';
+    if(v.notes) $('notes').textContent=String(v.notes).slice(0,600);
+    if(v.sha256 && /^[0-9a-fA-F]{64}$/.test(v.sha256)){var s=$('sha');s.hidden=false;s.textContent='SHA-256: '+v.sha256.toUpperCase();}
+  }).catch(function(){
+    $('ver').textContent='Latest version: see the button below.';
+  });
+})();
+</script>
+</body>
+</html>
