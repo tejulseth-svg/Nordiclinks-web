@@ -51,6 +51,8 @@ nav a:hover{color:var(--text)}
 .btn.ghost:hover{border-color:var(--mint);color:var(--text)}
 .btn.small{min-height:40px;padding:0 18px;font-size:14px}
 @media (max-width:620px){nav a:not(.btn){display:none}}
+.lbl-short{display:none}
+@media (max-width:480px){.lbl-full{display:none}.lbl-short{display:inline}}
 
 /* hero */
 .hero-wrap{position:relative}
@@ -118,6 +120,10 @@ nav a:hover{color:var(--text)}
 .card.price .amount{font:800 clamp(34px,5vw,46px)/1 var(--display,var(--body));color:var(--text);display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
 .card.price .amount span{font:600 15px var(--body);color:var(--muted)}
 .card.price a{color:var(--mint)}
+.card.price a.btn{color:var(--ink);align-self:flex-start}
+.card.price a.btn:hover{color:var(--ink)}
+.buynote{margin-top:22px;color:var(--muted);font-size:16px;max-width:760px}
+.buynote b{color:var(--text)}
 .card small{color:var(--muted);font-size:14px;line-height:1.5}
 
 /* steps */
@@ -185,7 +191,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <a href="#pricing">Pricing</a>
       <a href="#reviews">Reviews</a>
       <a href="#faq">FAQ</a>
-      <a class="btn small" href="#beta">Coming soon</a>
+      <a class="btn small" href="https://buy.polar.sh/polar_cl_tOv2G7pVgz1JVO4NG0TfTL3oi1i0NRzKGLCJ22NIty0" rel="noopener" aria-label="Buy Nordic Links – $49"><span class="lbl-full">Buy Nordic Links – $49</span><span class="lbl-short">Buy – $49</span></a>
     </nav>
   </div>
 </header>
@@ -205,7 +211,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <h1>Your caddie <span>is listening.</span></h1>
         <p class="lead">Change clubs, aim and views with your voice. Ask what to hit, and get the right club for the distance, slope and lie. Stay in your stance and never walk back to the keyboard.</p>
         <div class="ctas">
-          <a class="btn" href="#demo">Watch the demo</a>
+          <a class="btn" href="https://buy.polar.sh/polar_cl_tOv2G7pVgz1JVO4NG0TfTL3oi1i0NRzKGLCJ22NIty0" rel="noopener">Buy Nordic Links – $49</a>
+          <a class="btn ghost" href="/download">Download</a>
+          <a class="btn ghost" href="#demo">Watch the demo</a>
           <a class="btn ghost" href="#smart">See the smart caddie</a>
         </div>
         <div class="chips">
@@ -345,33 +353,43 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <div class="price-grid">
         <div class="card price main">
           <div class="eyebrow">Nordic Links</div>
-          <div class="amount">$49<span>one-time</span></div>
-          <small>Voice control and the smart caddie for GSPro. Free updates, no monthly fee.</small>
+          <div class="amount">$49<span>+ tax · one-time</span></div>
+          <small>Voice control and the smart caddie for GSPro. One license works on 2 PCs and never expires. Free updates, no monthly fee.</small>
+          <a class="btn" href="https://buy.polar.sh/polar_cl_tOv2G7pVgz1JVO4NG0TfTL3oi1i0NRzKGLCJ22NIty0" rel="noopener">Buy Nordic Links – $49</a>
         </div>
         <div class="card price">
           <div class="eyebrow">First 10 buyers</div>
           <div class="amount">50% off<span>$24.50</span></div>
-          <small>The first ten licences at launch are half price.</small>
+          <small>Reserved for our early sign-ups. Got our email? Use your code at checkout.</small>
         </div>
         <div class="card price">
           <div class="eyebrow">Beta testers</div>
           <div class="amount">Free</div>
-          <small>Our beta testers keep their licence for good, as a thank-you. The beta is now full.</small>
+          <small>Our beta testers keep their license for good, as a thank-you.</small>
         </div>
       </div>
+      <p class="buynote"><b>Your license key</b> arrives with your Polar receipt: open the <b>“Access purchase”</b> link in the receipt email to find it (it starts with <b>NL-</b>).</p>
     </div>
   </section>
 
-  <section id="beta">
+  <section id="get">
     <div class="wrap beta">
       <div style="display:flex;flex-direction:column;gap:16px">
-        <div class="eyebrow">Coming soon</div>
-        <h2>The closed beta is full</h2>
-        <p class="lead">Thank you to everyone who applied. Our testers are putting Nordic Links through its paces on their own sims right now, and we are using their feedback to get it ready for launch.</p>
+        <div class="eyebrow">Get Nordic Links</div>
+        <h2>Buy, download, say “Caddie”.</h2>
+        <p class="lead">One license, one installer. It takes a few minutes from checkout to your first club change.</p>
       </div>
-      <div class="card" style="display:flex;flex-direction:column;gap:12px;align-self:center">
-        <div class="eyebrow">What happens next</div>
-        <p>Nordic Links launches for everyone soon, at $49 one-time with free updates. The first ten buyers get 50% off.</p>
+      <div class="card" style="display:flex;flex-direction:column;gap:14px;align-self:center">
+        <div class="eyebrow">How it works</div>
+        <ol style="margin:0;padding-left:20px;display:grid;gap:8px">
+          <li><a href="https://buy.polar.sh/polar_cl_tOv2G7pVgz1JVO4NG0TfTL3oi1i0NRzKGLCJ22NIty0" rel="noopener">Buy Nordic Links</a> – $49 + tax, one-time. One license works on 2 PCs and never expires.</li>
+          <li>Open <b>“Access purchase”</b> in your Polar receipt email to find your license key.</li>
+          <li><a href="/download">Download</a> the installer for Windows, run it and enter your key in the setup guide.</li>
+        </ol>
+        <div class="ctas">
+          <a class="btn" href="https://buy.polar.sh/polar_cl_tOv2G7pVgz1JVO4NG0TfTL3oi1i0NRzKGLCJ22NIty0" rel="noopener">Buy Nordic Links – $49</a>
+          <a class="btn ghost" href="/download">Download</a>
+        </div>
         <p>Questions? Email <a href="mailto:post@getnordiclinks.com">post@getnordiclinks.com</a>.</p>
       </div>
     </div>
@@ -422,7 +440,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="wrap">
       <div class="sec-head"><div class="eyebrow">FAQ</div><h2>Questions</h2></div>
       <div class="faq">
-        <details><summary>Does it cost anything?</summary><p>Nordic Links is a one-time purchase of $49 with free updates. No subscription. The first ten buyers get 50% off, and beta testers get their licence free.</p></details>
+        <details><summary>Does it cost anything?</summary><p>Nordic Links is a one-time purchase of $49 + tax with free updates. No subscription. One license works on 2 PCs and never expires. The first ten buyers get 50% off, and beta testers get their license free.</p></details>
+        <details><summary>Where do I find my license key?</summary><p>After you buy, Polar sends you a receipt email. Open the “Access purchase” link in it to see your license key (it starts with NL-). Paste it into the setup guide the first time you start Nordic Links.</p></details>
         <details><summary>Does my voice leave my PC?</summary><p>No. Speech recognition runs locally on your sim PC. Nothing is recorded or uploaded.</p></details>
         <details><summary>How does it know the distance and lie?</summary><p>It reads the player box GSPro already shows on screen: distance to the pin, slope and lie. You can always say them yourself instead.</p></details>
         <details><summary>Which launch monitors are supported?</summary><p>Any launch monitor that works with GSPro. The voice control talks to GSPro directly, not to your launch monitor.</p></details>
