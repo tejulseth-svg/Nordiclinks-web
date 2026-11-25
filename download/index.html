@@ -25,6 +25,8 @@ h2{font-family:var(--display);font-stretch:125%;font-weight:800;font-size:22px;m
 .mono{font-family:var(--mono);font-size:13px;color:var(--muted);word-break:break-all}
 .muted{color:var(--muted);font-size:15px}
 ol,ul{padding-left:22px;margin:8px 0}li{margin:6px 0}
+footer{border-top:1px solid var(--line);margin-top:56px;padding:28px 16px;color:var(--soft);font-size:14px}
+footer .wrap{padding:0 0 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 </style>
 </head>
 <body>
@@ -56,6 +58,11 @@ ol,ul{padding-left:22px;margin:8px 0}li{margin:6px 0}
   <h2>Help</h2>
   <p class="muted">Something wrong? In Nordic Links choose <b>Report a problem</b> and send the file it makes to <a href="mailto:post@getnordiclinks.com">post@getnordiclinks.com</a>. The user manual is inside the app under <b>User manual</b>.</p>
 </div>
+<footer>
+  <div class="wrap">
+    <span><a href="/privacy">Privacy</a> · Nordic Links Julseth · org. no. 938 866 198 · Malmefjordvegen 317, 6445 Malmefjorden · <a href="mailto:post@getnordiclinks.com">post@getnordiclinks.com</a></span>
+  </div>
+</footer>
 <script>
 // Knappen peker alltid på siste utgave (GitHub Releases: /releases/latest/download/NordicLinks-Setup.exe) og virker også uten JavaScript.
 // Leser /version.json: {"version","url","file","sha256","size_mb","notes"} og viser versjon, størrelse, notater og sjekksum. «file» overstyrer knappen hvis den er satt.
